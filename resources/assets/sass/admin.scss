@@ -1,0 +1,29 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,700|Siemreap');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+// Vendors
+@import "admin/normalize";
+@import "admin/grid";
+
+// Froala Styles
+@import "admin/froala/froala_editor";
+@import "admin/froala/froala_style";
+@import "admin/froala/plugins/code_view";
+@import "admin/froala/plugins/colors";
+@import "admin/froala/plugins/emoticons";
+@import "admin/froala/plugins/image_manager";
+@import "admin/froala/plugins/image";
+@import "admin/froala/plugins/line_breaker";
+@import "admin/froala/plugins/table";
+@import "admin/froala/plugins/char_counter";
+@import "admin/froala/plugins/video";
+@import "admin/froala/plugins/fullscreen";
+@import "admin/froala/plugins/file";
+@import "admin/froala/plugins/quick_insert";
+@import "admin/froala/codemirror";
+
+// Custom Styles
+@import "admin/admin-styles";
+@import "admin/queries";
+

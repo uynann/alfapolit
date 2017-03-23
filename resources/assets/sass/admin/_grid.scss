@@ -1,0 +1,76 @@
+/*  SECTIONS  */
+.section {
+    clear: both;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*  COLUMN SETUP  */
+.col {
+    display: block;
+    float:left;
+    margin: 1% 0 1% 2%;
+}
+.col:first-child { margin-left: 0; }
+
+/*  GROUPING  */
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+
+/*  GRID OF FIVE  */
+.span_5_of_5 {
+    width: 100%;
+}
+.span_4_of_5 {
+    width: 79.6%;
+}
+.span_3_of_5 {
+    width: 59.2%;
+}
+.span_2_of_5 {
+    width: 38.8%;
+}
+.span_1_of_5 {
+    width: 18.4%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 1050px) {
+    .col {  margin: 1% 0 1% 0%; }
+    .span_1_of_5, .span_2_of_5, .span_3_of_5, .span_4_of_5, .span_5_of_5 { width: 100%; }
+}
+
+
+/*  GRID OF SIX  */
+.span_6_of_6 {
+    width: 100%;
+}
+
+.span_5_of_6 {
+    width: 83%;
+}
+
+.span_4_of_6 {
+    width: 66%;
+}
+
+.span_3_of_6 {
+    width: 49%;
+}
+
+.span_2_of_6 {
+    width: 32%;
+}
+
+.span_1_of_6 {
+    width: 15%;
+}
+
+/*  GO FULL WIDTH BELOW 480 PIXELS */
+@media only screen and (max-width: 768px) {
+    .col {  margin: 1% 0 1% 0%; }
+    .span_1_of_6, .span_2_of_6, .span_3_of_6, .span_4_of_6, .span_5_of_6, .span_6_of_6 { width: 100%; }
+}
