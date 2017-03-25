@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlfaPolit - @yield('title')</title>
+    <title>AlfaPolitAdmin - @yield('title')</title>
     <meta name="description" content="Administration area of Alfapolit website.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
@@ -26,9 +26,9 @@
                 <div class="open-menu">
                     <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
                 </div>
-                <form action="" class="search-form">
+                <form class="search-form">
                     <i class="fa fa-search" aria-hidden="true"></i>
-                    <input type="text" name="search" class="search" placeholder="Search">
+                    <input type="text" name="search" class="search" placeholder="Search" @if(isset($param_val)) value="{{ $param_val }}" @endif>
                 </form>
                 <div class="logout">
                     <a href="{{ url('/logout') }}"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></a>

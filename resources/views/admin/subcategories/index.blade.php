@@ -1,14 +1,14 @@
 @extends('layouts.admin')
 
 @section('title')
-Categories
+Subcategories
 @endsection
 
 @section('content')
 
 <div class="page all-items admin-wrapper">
     <div class="page-header">
-        <h2>Categories</h2>
+        <h2>Sub Categories</h2>
     </div>
 
     @if(session('message'))
@@ -19,12 +19,11 @@ Categories
     @endif
 
     <div class="statistics">
-        @if( count($categories) == 1)
-        <span>{{ count($categories) }} item</span>
-        @elseif (count($categories) > 1)
-        <span>{{ count($categories) }} items</span>
+        @if( count($subcategories) == 1)
+        <span>{{ count($subcategories) }} item</span>
+        @elseif (count($subcategories) > 1)
+        <span>{{ count($subcategories) }} items</span>
         @endif
-
     </div>
 
     <div class="items-table">
@@ -33,7 +32,7 @@ Categories
                 <b>Name</b>
             </div>
             <div class="col span_1_of_6">
-                <b>Sub Categories</b>
+                <b>Category</b>
             </div>
             <div class="col span_1_of_6">
                 <b>Articles</b>
@@ -46,24 +45,24 @@ Categories
             </div>
         </div>
 
-        @forelse($categories as $category)
+        @forelse($subcategories as $subcategory)
         <div class="item-body group">
             <div class="col span_1_of_6 khmer">
-                <a href="">{{ $category->name }}</a>
+                <a href="">{{ $subcategory->name }}</a>
             </div>
             <div class="col span_1_of_6 khmer">
-                <p>{{ count($category->subcategories) }}</p>
+                <p>{{ $subcategory->category->name }}</p>
             </div>
             <div class="col span_1_of_6 khmer">
-                <p>{{ count($category->articles) }}</p>
+                <p>{{ count($subcategory->articles) }}</p>
             </div>
             <div class="col span_2_of_6 khmer">
-                <p>{{ $category->description }}</p>
+                <p>{{ $subcategory->description }}</p>
             </div>
             <div class="col span_1_of_6">
-                <a href="{{ url('/admin/categories/' . $category->id . '/edit') }}" class="btn btn-small"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <a href="{{ url('/admin/subcategories/' . $subcategory->id . '/edit') }}" class="btn btn-small"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 
-                <form class="delete-form" action="{{ url('/admin/categories/' . $category->id) }}" method="POST">
+                <form class="delete-form" action="{{ url('/admin/subcategories/' . $subcategory->id) }}" method="POST">
                     {{ csrf_field() }}
                     {{ method_field('DELETE') }}
                     <button type="submit" class="btn btn-small"><i class="fa fa-trash" aria-hidden="true"></i></button>
@@ -72,21 +71,21 @@ Categories
         </div>
         @empty
         <div class="item-body group">
-            <p class="not-found-text">No categories found.</p>
+            <p class="not-found-text">No sub categories found.</p>
         </div>
         @endforelse
     </div>
 
     <div class="note-on-page">
         <span><strong><em>Note:</em></strong></span>
-        <span><em>Deleting a category does delete all of sub categories and articles associated to it too.</em></span>
+        <span><em>Deleting a sub category does not delete articles associated to it.</em></span>
     </div>
 
-    <div class="add-new-category group">
+    <div class="add-new-subcategory group">
         <div class="col span_1_of_5"></div>
         <div class="col span_3_of_5">
-            <h3 class="add-category-header">Add New Category</h3>
-            <form action="{{ url('/admin/categories') }}" class="new-form" method="POST">
+            <h3 class="add-category-header">Add New Sub Category</h3>
+            <form action="{{ url('/admin/subcategories') }}" class="new-form" method="POST">
                 {{ csrf_field() }}
                 <div class="group">
                     <div class="col span_2_of_6">
@@ -100,6 +99,22 @@ Categories
                             <p>{{ $errors->first('name') }}</p>
                         </span>
                         @endif
+                    </div>
+                </div>
+                   <div class="group">
+                    <div class="col span_2_of_6">
+                        <p><sup>*</sup> Category:</p>
+                    </div>
+                    <div class="col span_4_of_6 khmer">
+                        <select class="form-control" name="category" value="{{ old('category') }}">
+                            @foreach($categories as $key=>$category)
+                            @if($key == count($categories))
+                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                            @else
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endif
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -137,11 +152,11 @@ Categories
 
 <div class="confirm-modal">
     <div class="modal-header">
-        <h3>Delete Category</h3>
+        <h3>Delete Sub Category</h3>
         <span class="close-modal"><i class="fa fa-times" aria-hidden="true"></i></span>
     </div>
     <div class="modal-body">
-        <p>Are you sure you want to delete this category?</p>
+        <p>Are you sure you want to delete this sub category?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn confirm">Yes</button>

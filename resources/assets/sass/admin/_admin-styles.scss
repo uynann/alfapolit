@@ -71,18 +71,31 @@ a:hover {
     margin-right: 10px;
 }
 
+
+button.btn,
 input[type="button"].btn,
 input[type="submit"].btn,
 a.btn:link,
 a.btn:visited {
     color: rgba(255,255,255,.8);
     background: #2c3e50;
-    padding: 10px 16px;
+    padding: 9px 16px;
     border-radius: 3px;
     margin-right: 3px;
     border: 0;
 }
 
+button.btn.btn-trans,
+input[type="button"].btn.btn-trans,
+input[type="submit"].btn.btn-trans,
+a.btn.btn-trans:link,
+a.btn.btn-trans:visited {
+    background: transparent;
+    color: #2c3e50;
+    border: 1px solid #2c3e50;
+}
+
+button.btn.btn-small,
 input[type="button"].btn.btn-small,
 input[type="submit"].btn.btn-small,
 a.btn.btn-small {
@@ -90,6 +103,7 @@ a.btn.btn-small {
     font-size: 0.9em;
 }
 
+button.btn:hover,
 input[type="button"].btn:hover,
 input[type="submit"].btn:hover,
 a.btn:hover,
@@ -97,9 +111,14 @@ a.btn:active {
     background: #3d566f;
 }
 
-a.btn.btn-item-big > i {
-    display: none;
+button.btn.btn.btn-trans:hover,
+input[type="button"].btn.btn.btn-trans:hover,
+input[type="submit"].btn.btn.btn-trans:hover,
+a.btn.btn.btn-trans:hover,
+a.btn.btn.btn-trans:active {
+    background: #d7dde4;
 }
+
 
 .items-table {
     margin-top: 40px;
@@ -212,6 +231,91 @@ a.btn.btn-item-big > i {
     cursor: pointer;
 }
 
+
+.modal-overlay {
+    position: fixed;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: none;
+}
+
+.confirm-modal {
+    position: fixed;
+    z-index: 999;
+    top: 20%;
+    left: 0;
+    right: 0;
+    width: 45%;
+    height: auto;
+    margin: auto;
+    background: #fff;
+    display: none;
+}
+
+.modal-header {
+    position: relative;
+}
+
+.modal-header h3 {
+    background: #2c3e50;
+    padding: 17px 20px;
+    color: rgba(255,255,255,.8);
+}
+
+.modal-header span {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.modal-body {
+    border-bottom: 1px solid #2c3e50;
+    padding: 17px 20px 35px 20px;
+}
+
+.modal-footer {
+    padding: 17px 20px;
+    text-align: right;
+}
+
+.delete-form {
+    display: inline-block;
+}
+
+.not-found-text {
+    padding: 15px 0;
+}
+
+.statistics {
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.add-new-category,
+.add-new-subcategory {
+    border-top: 2px solid #d7dde4;
+    padding-top: 40px;
+    margin-top: 30px;
+}
+
+.category, .subcategory {
+    display: inline-block;
+}
+
+.subcategory input {
+    margin-left: 7px;
+}
+
+.subcategory input:first-child {
+    margin-left: 0;
+}
+
 /* ------------------------------------------------------------------ */
 /* Admin Menu */
 /* ------------------------------------------------------------------ */
@@ -221,7 +325,7 @@ a.btn.btn-item-big > i {
     position: fixed;
     background: #2c3e50;
     height: 100%;
-    z-index: 999;
+    z-index: 997;
     -webkit-transition: width .1s;
     transition: width .1s;
 }
@@ -256,6 +360,10 @@ a.btn.btn-item-big > i {
     background: #3d566f;
 }
 
+#admin-menu > ul > li > a.active {
+    background: #3d566f;
+}
+
 #admin-menu > ul > li > i,
 #admin-menu > ul > li > a > i {
     margin-right: 10px;
@@ -281,7 +389,7 @@ a.btn.btn-item-big > i {
     padding-top: 20px;
     padding-bottom: 20px;
     background: #d7dde4;
-    z-index: 998;
+    z-index: 996;
 }
 
 .open-menu {
@@ -298,6 +406,7 @@ a.btn.btn-item-big > i {
 .search-form input {
     display: inline-block;
     width: 500px;
+    font-family: 'Siemreap', sans-serif;
     padding-left: 5px;
     border: none;
     background: none;
@@ -319,6 +428,7 @@ a.btn.btn-item-big > i {
     padding-bottom: 11px;
     padding-top: 11px;
     background: #fff;
+    z-index: 995;
 }
 
 /* ------------------------------------------------------------------ */
@@ -335,13 +445,13 @@ a.btn.btn-item-big > i {
     background: #ffffff;
     display: inline-block;
     position: fixed;
-    top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
+    top: 18%;
     width: 35%;
-    height: 400px;
+    height: auto;
     margin: auto;
+    padding-bottom: 10px
 }
 
 .login-form h2 {

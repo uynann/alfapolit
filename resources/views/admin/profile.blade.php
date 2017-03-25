@@ -23,7 +23,7 @@ Profile
         <div class="col span_3_of_5">
             <form action="{{ url('/admin/profile') }}" class="new-form" method="POST">
                 {{ csrf_field() }}
-                <input type="hidden" name="_method" value="PUT">
+                {{ method_field('PUT') }}
                 <div class="group">
                     <div class="col span_2_of_6">
                         <p>Name:</p>

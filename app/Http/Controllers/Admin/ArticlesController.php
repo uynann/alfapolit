@@ -11,11 +11,33 @@ use Alfapolit\Category;
 
 class ArticlesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::orderBy('id', 'desc')->paginate(20);
+       $search = $request->search;
+        $aritcle_all = Article::all();
+        $article_published = Article::where('status', '=', 'published')->get();
+        $article_draft = Article::where('status', '=', 'saved')->get();
 
-        return view('admin.articles.index', ['articles' => $articles]);
+       if (!empty($search))
+       {
+           $articles = Article::SearchByKeyword($search)->orderBy('id', 'desc')->paginate(20);
+           $param = 'search';
+           $param_val = $search;
+       } else {
+           $articles = Article::orderBy('id', 'desc')->paginate(20);
+           $param = null;
+           $param_val = null;
+       }
+
+
+        return view('admin.articles.index', [
+            'articles' => $articles,
+            'param' => $param,
+            'param_val' => $param_val,
+            'article_all' => $aritcle_all,
+            'article_published' => $article_published,
+            'article_draft' => $article_draft,
+        ]);
     }
 
 
@@ -30,11 +52,13 @@ class ArticlesController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255|unique:articles',
             'image' => 'mimes:jpeg,jpg,png,bmp|max:10000',
+            'category' => 'required',
         ]);
 
         $article = new Article([
             'title' => $request->title,
             'category_id' => $request->category,
+            'sub_category_id' => $request->subcategory,
             'content' => $request->content,
             'slug' => $request->title,
         ]);
@@ -52,7 +76,7 @@ class ArticlesController extends Controller
             }
 
 
-            Image::make($image->getRealPath())->resize(500, 330)->save('img/featured-image/thumbs/' . $filename, 50);
+            Image::make($image->getRealPath())->fit(500, 330)->save('img/featured-image/thumbs/' . $filename, 50);
             $image->move('img/featured-image/', $filename);
 
             $article->image = $filename;
@@ -60,13 +84,12 @@ class ArticlesController extends Controller
 
         $message = '';
 
-        if (isset($request->publish)) {
-            $article->status = 'published';
-            $massage = "Article published.";
-
-        } elseif (isset($request->save)) {
+        if (isset($request->save)) {
             $article->status = 'saved';
             $message = "Article saved.";
+        } else {
+            $article->status = 'published';
+            $message = "Article published.";
         }
 
         $article->save();
@@ -89,11 +112,13 @@ class ArticlesController extends Controller
         $this->validate($request, [
             'title' => 'required|max:255|unique:articles,title,' . $id,
             'image' => 'mimes:jpeg,jpg,png,bmp|max:10000',
+            'category' => 'required',
         ]);
 
         Article::findOrFail($id)->update([
             'title' => $request->title,
             'category_id' => $request->category,
+            'sub_category_id' => $request->subcategory,
             'content' => $request->content,
             'slug' => $request->title,
             'status' => $request->status,
@@ -112,18 +137,19 @@ class ArticlesController extends Controller
             }
 
 
-            Image::make($image->getRealPath())->resize(500, 330)->save('img/featured-image/thumbs/' . $filename, 50);
+            Image::make($image->getRealPath())->fit(600, 360)->save('img/featured-image/thumbs/' . $filename, 50);
             $image->move('img/featured-image/', $filename);
 
             Article::findOrFail($id)->update(['image' => $filename]);
         }
 
-        return redirect('/admin/articles/' . $id. '/edit')->with('message', 'Article updated.');
+        return redirect()->back()->with('message', 'Article updated.');
     }
 
 
-    public function destroy(Articles $articles)
+    public function destroy($id)
     {
-        //
+        Article::findOrFail($id)->delete();
+        return redirect()->back()->with('message', 'Article trashed.');
     }
 }

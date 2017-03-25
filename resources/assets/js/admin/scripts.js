@@ -15,26 +15,66 @@ $(function() {
     });
 
 
+
+    function showConfirmModal() {
+        $('.confirm-modal').fadeIn('fast');
+        $('.modal-overlay').fadeIn('fast');
+        $('html, body').css('overflowY', 'hidden');
+    }
+
+    function closeConfirmModal() {
+        $('.confirm-modal').fadeOut('fast');
+        $('.modal-overlay').fadeOut('fast');
+        $('html, body').css('overflowY', 'auto');
+    }
+
+
+    $('.delete-form').click(function(e) {
+        e.preventDefault();
+        showConfirmModal();
+
+        var thisForm = $(this);
+
+        $('button.confirm').click(function() {
+            closeConfirmModal();
+            thisForm.submit();
+        });
+
+        $('button.cancel, .modal-overlay, .close-modal').click(function() {
+            closeConfirmModal();
+        });
+
+    });
+
+
+    $('input:radio[name="subcategory"]').change(function() {
+        if ($(this).is(':checked')) {
+            $(this).parent('.subcategory').siblings('.category').children('input').prop('checked', true);
+        }
+    });
+
+    $('input:radio[name="category"]').change(function() {
+        if ($(this).is(':checked')) {
+            $('input:radio[name="subcategory"]').prop("checked", false).end()
+                .buttonset("refresh");
+        }
+    });
+
+
+
     $('#froala-editor').froalaEditor({
-        // Set the image upload parameter.
         imageUploadParam: 'image_param',
-
         imageMove: true,
-
-        // Set the image upload URL.
         imageUploadURL: '/admin/upload-image',
 
         imageUploadParams: {
             _token: $("input[name='_token']").val() // This passes the laravel token with the ajax request.
         },
 
-        // Set request type.
         imageUploadMethod: 'POST',
 
-        // Set max image size to 5MB.
         imageMaxSize: 5 * 1024 * 1024,
 
-        // Allow to upload PNG and JPG.
         imageAllowedTypes: ['jpeg', 'jpg', 'png']
     });
 

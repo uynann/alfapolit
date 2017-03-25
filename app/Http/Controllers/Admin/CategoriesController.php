@@ -8,9 +8,27 @@ use Alfapolit\Category;
 
 class CategoriesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.categories.index', ['categories' => Category::all()]);
+
+        $search = $request->search;
+
+        if (!empty($search)) {
+            $categories = Category::SearchByKeyword($search)->orderBy('id', 'desc')->get();
+            $param = 'search';
+            $param_val = $search;
+        }
+        else {
+            $categories = Category::all();
+            $param = null;
+            $param_val = null;
+        }
+
+        return view('admin.categories.index', [
+            'categories' => $categories,
+            'param' => $param,
+            'param_val' => $param_val,
+        ]);
     }
 
 
@@ -27,7 +45,7 @@ class CategoriesController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect('/admin/categories')->with('message', 'Category created.');
+        return redirect()->back()->with('message', 'Category created.');
     }
 
 
@@ -55,8 +73,9 @@ class CategoriesController extends Controller
     }
 
 
-    public function destroy(Categories $categories)
+    public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+        return redirect()->back()->with('message', 'Category deleted!');
     }
 }

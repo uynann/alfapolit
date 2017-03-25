@@ -33,15 +33,27 @@ Create Article
                 <p><sup>*</sup> Categories:</p>
             </div>
             <div class="col span_4_of_5 khmer">
-                <select class="form-control" name="category" value="{{ old('category') }}">
-                    @foreach($categories as $key=>$category)
-                        @if($key == count($categories))
-                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                        @else
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif
-                    @endforeach
-                </select>
+                @foreach($categories as $category)
+                <div class="category-block">
+                    <div class="category">
+                        <input type="radio" name="category" value="{{ $category->id }}"> {{ $category->name }}
+                    </div>
+                    @if(count($category->subcategories) > 0)
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    <div class="subcategory">
+                        ( @foreach($category->subcategories as $subcategory)
+                        <input type="radio" name="subcategory" value="{{ $subcategory->id }}"> {{ $subcategory->name }}
+                        @endforeach )
+                    </div>
+                    @endif
+                </div>
+                @endforeach
+
+                @if ($errors->has('category'))
+                <span class="help-block">
+                    <p>{{ $errors->first('category') }}</p>
+                </span>
+                @endif
             </div>
         </div>
         <div class="group">

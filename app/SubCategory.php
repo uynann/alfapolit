@@ -4,19 +4,18 @@ namespace Alfapolit;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class SubCategory extends Model
 {
-
     protected $fillable = [
-        'name', 'description', 'slug',
+        'name', 'description', 'slug', 'category_id',
     ];
 
     public function articles() {
         return $this->hasMany('Alfapolit\Article');
     }
 
-    public function subcategories() {
-        return $this->hasMany('Alfapolit\SubCategory');
+    public function category() {
+        return $this->belongsTo('Alfapolit\Category');
     }
 
     public function articlesPublished() {

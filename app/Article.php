@@ -20,8 +20,22 @@ class Article extends Model
         return $this->belongsTo('Alfapolit\Category');
     }
 
+    public function subCategory() {
+        return $this->belongsTo('Alfapolit\SubCategory');
+    }
+
     public function setSlugAttribute($slug)
     {
         $this->attributes['slug'] = preg_replace('/\s+/', '', $slug);
+    }
+
+    public function scopeSearchByKeyword($query, $keyword)
+    {
+        if ($keyword!='') {
+            $query->where(function ($query) use ($keyword) {
+                $query->where("title", "LIKE","%$keyword%");
+            });
+        }
+        return $query;
     }
 }
