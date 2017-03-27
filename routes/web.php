@@ -19,8 +19,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 });
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::get('/search', 'SearchArticleController@search');
+Route::get('/{category}', 'CategoryController@category');
+Route::get('/{category}/{subcategory}', 'CategoryController@subCategory');
+Route::get('/{category}/{subcategory}/{article}', 'ShowArticleController@show');
 
 

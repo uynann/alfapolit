@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-Create Article
-@endsection
+@section('title')Create Article @endsection
 
 @section('content')
 

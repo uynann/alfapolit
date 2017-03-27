@@ -11,20 +11,20 @@ class SubCategory extends Model
     ];
 
     public function articles() {
-        return $this->hasMany('Alfapolit\Article');
+        return $this->hasMany(Article::class);
     }
 
     public function category() {
-        return $this->belongsTo('Alfapolit\Category');
+        return $this->belongsTo(Category::class);
     }
 
     public function articlesPublished() {
-        return $this->articles()->where('status', '=', 'published');
+        return $this->articles()->where('status', 'published');
     }
 
     public function setSlugAttribute($slug)
     {
-        $this->attributes['slug'] = preg_replace('/\s+/', '', $slug);
+        $this->attributes['slug'] = preg_replace("/[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?\s+*$]/", '', $slug);
     }
 
     public function scopeSearchByKeyword($query, $keyword)

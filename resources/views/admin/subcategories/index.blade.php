@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-Subcategories
-@endsection
+@section('title')Subcategories @endsection
 
 @section('content')
 

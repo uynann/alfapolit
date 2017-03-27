@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-Profile
-@endsection
+@section('title')Custom Fields @endsection
 
 @section('content')
 

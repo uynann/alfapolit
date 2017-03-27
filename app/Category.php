@@ -12,20 +12,26 @@ class Category extends Model
     ];
 
     public function articles() {
-        return $this->hasMany('Alfapolit\Article');
+        return $this->hasMany(Article::class);
     }
 
     public function subcategories() {
-        return $this->hasMany('Alfapolit\SubCategory');
+        return $this->hasMany(SubCategory::class);
+    }
+
+    // Route Binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function articlesPublished() {
-        return $this->articles()->where('status', '=', 'published');
+        return $this->articles()->where('status', 'published');
     }
 
     public function setSlugAttribute($slug)
     {
-        $this->attributes['slug'] = preg_replace('/\s+/', '', $slug);
+        $this->attributes['slug'] = preg_replace("/[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?\s+*$]/", '', $slug);
     }
 
     public function scopeSearchByKeyword($query, $keyword)

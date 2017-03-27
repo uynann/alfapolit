@@ -17,25 +17,34 @@ class Article extends Model
     ];
 
     public function category() {
-        return $this->belongsTo('Alfapolit\Category');
+        return $this->belongsTo(Category::class);
     }
 
     public function subCategory() {
-        return $this->belongsTo('Alfapolit\SubCategory');
+        return $this->belongsTo(SubCategory::class);
+    }
+
+    // Route Binding
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function setSlugAttribute($slug)
     {
-        $this->attributes['slug'] = preg_replace('/\s+/', '', $slug);
+        $this->attributes['slug'] = preg_replace("/[!@#$%^&*()_+\-=\[\]{};':\"\\|,.<>\/?\s+*$]/", '', $slug);
     }
 
     public function scopeSearchByKeyword($query, $keyword)
     {
-        if ($keyword!='') {
-            $query->where(function ($query) use ($keyword) {
-                $query->where("title", "LIKE","%$keyword%");
-            });
-        }
-        return $query;
+        if ($keyword != '') {   
+            $query->whereHas("Category", function($query) use ($keyword) {
+                $query->where("name", "LIKE", "%$keyword%");
+            })
+                ->orWhereHas("SubCategory", function($query) use ($keyword) {
+                $query->where("name", "LIKE", "%$keyword%");
+            })
+                ->orWhere("title","LIKE","%$keyword%")->get();
+        } 
     }
 }

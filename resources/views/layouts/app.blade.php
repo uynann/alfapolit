@@ -2,10 +2,9 @@
 <html lang="km">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlfaPolit | Login</title>
-    <meta name="description" content="Administration area of Alfapolit website.">
+    <title>@yield('title')</title>
+    <meta name="description" content="@yield('description')">
 
     <link rel="apple-touch-icon" sizes="180x180" href="/img/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" href="/img/favicons/favicon-32x32.png" sizes="32x32">
@@ -15,13 +14,17 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Styles -->
-    <link href="/css/admin.css" rel="stylesheet">
+    <link href="/css/app.css" rel="stylesheet">
+
 </head>
 <body>
+    @include('layouts.partials._header')
 
     @yield('content')
 
+    @include('layouts.partials._footer')
+
     <!-- Scripts -->
-    <script src="/js/admin.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>

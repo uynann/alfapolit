@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-Edit Sub Category
-@endsection
+@section('title')Edit Sub Category @endsection
 
 @section('content')
 

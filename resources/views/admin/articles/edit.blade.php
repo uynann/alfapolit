@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
-@section('title')
-Edit Article
-@endsection
+@section('title')Edit Article @endsection
 
 @section('content')
 
@@ -10,7 +8,7 @@ Edit Article
     <div class="page-header">
         <h2>Edit Article</h2>
         <a href="{{ url('/admin/articles') }}" class="btn btn-small">Back to Articles</a>
-        <a href="{{ url('/'. $article->category->slug . '/' . $article->slug) }}" class="btn btn-small">Show Article</a>
+        <a href="{{ url('/'. $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" class="btn btn-small">Show Article</a>
     </div>
 
     @if(session('message'))

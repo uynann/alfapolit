@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Alfapolit',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return [
         Alfapolit\Providers\EventServiceProvider::class,
         Alfapolit\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Alfapolit\Providers\ComposerServiceProvider::class,
 
     ],
 
