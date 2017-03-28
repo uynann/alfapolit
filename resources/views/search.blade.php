@@ -8,6 +8,7 @@
 <meta property="og:description" content="ស្វែងរក {{ $param_val }}" />
 <meta property="og:image" content="{{ url('/img/alpha-icon-min.png') }}" />
 <meta property="og:locale" content="km_KH" />
+<meta property="fb:app_id" content="269342813510825" />
 @endsection
 
 @section('content')

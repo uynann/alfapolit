@@ -9,6 +9,7 @@
 <meta property="og:description" content="{{ str_limit(strip_tags($article->content), 160) }}" />
 <meta property="og:image" content="{{ url('/img/featured-image/' . $article->image) }}" />
 <meta property="og:locale" content="km_KH" />
+<meta property="fb:app_id" content="269342813510825" />
 @endsection
 
 @section('content')
@@ -31,6 +32,7 @@
                 {!! html_entity_decode($article->content) !!}
 
             </div>
+            <div class="fb-share-button" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="large" data-mobile-iframe="true"></div>
         </div>
 
         <div class="col span_1_of_3">
