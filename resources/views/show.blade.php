@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
-@section('title'){{ $article->title }} - អាល់ហ្វាផូលីត@endsection
-
-@section('description'){{ str_limit(strip_tags($article->content), 160) }}@endsection
+@section('meta')
+<title>{{ $article->title }} - អាល់ហ្វាផូលីត</title>
+<meta name="description" content="{{ str_limit(strip_tags($article->content), 160) }}">
+<meta property="og:url" content="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" />
+<meta property="og:title" content="{{ $article->title }}" />
+<meta property="og:description" content="{{ str_limit(strip_tags($article->content), 160) }}" />
+<meta property="og:image" content="{{ url('/img/featured-image/' . $article->image) }}" />
+<meta property="og:locale" content="km_KH" />
+@endsection
 
 @section('content')
 

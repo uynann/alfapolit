@@ -17,8 +17,8 @@ class SearchArticleController extends Controller
         
         if (isset($search)) {
             if (strlen($search)  > 6) {
-                $articles = Article::SearchByKeyword($search)->orderBy('id', 'desc')->simplePaginate(20);
-                $articles_all = Article::SearchByKeyword($search)->get();
+                $articles = Article::SearchByKeyword($search)->where('status', 'published')->orderBy('id', 'desc')->simplePaginate(20);
+                $articles_all = Article::SearchByKeyword($search)->where('status', 'published')->get();
             }
         $param_val = $search;
         }

@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
-@section('title')ស្វែងរក {{ $param_val }} - អាល់ហ្វាផូលីត@endsection
-
-@section('description')ស្វែងរក {{ $param_val }}@endsection
+@section('meta')
+<title>ស្វែងរក {{ $param_val }} - អាល់ហ្វាផូលីត</title>
+<meta name="description" content="ស្វែងរក {{ $param_val }}">
+<meta property="og:url" content="{{ url('/search?' . $param . '=' . $param_val) }}" />
+<meta property="og:title" content="ស្វែងរក {{ $param_val }} - អាល់ហ្វាផូលីត" />
+<meta property="og:description" content="ស្វែងរក {{ $param_val }}" />
+<meta property="og:image" content="{{ url('/img/alpha-icon-min.png') }}" />
+<meta property="og:locale" content="km_KH" />
+@endsection
 
 @section('content')
 

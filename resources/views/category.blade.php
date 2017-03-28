@@ -1,8 +1,14 @@
 @extends('layouts.app')
 
-@section('title'){{ $category->name }} - អាល់ហ្វាផូលីត@endsection
-
-@section('description')Alfapolit website.@endsection
+@section('meta')
+<title>{{ $category->name }} - អាល់ហ្វាផូលីត</title>
+<meta name="description" content="{{ $category->decription }}">
+<meta property="og:url" content="{{ url('/' . $category->slug) }}" />
+<meta property="og:title" content="{{ $category->name }} - អាល់ហ្វាផូលីត" />
+<meta property="og:description" content="{{ $category->decription }}" />
+<meta property="og:image" content="{{ url('/img/alpha-icon-min.png') }}" />
+<meta property="og:locale" content="km_KH" />
+@endsection
 
 @section('content')
 <div id="articles-section" class="container">

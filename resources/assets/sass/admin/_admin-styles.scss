@@ -47,7 +47,7 @@ a:hover {
 }
 
 .khmer {
-    font-family: 'Siemreap', cursive;
+    font-family: 'Siemreap', sans-serif;
     font-size: 0.9em;
 }
 
@@ -213,10 +213,12 @@ a.btn.btn.btn-trans:active {
 
 .featured-image {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .featured-image img {
-    width: 200px;
+    height: 100px;
+    width: auto;
 }
 
 .message {
@@ -507,5 +509,15 @@ a.btn.btn.btn-trans:active {
 
 .forget-password {
     float: right;
+}
+
+.custom_fields {
+    margin-top: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #d7dde4;
+}
+
+.custom_fields:last-child {
+    border: 0;
 }
 

@@ -17,13 +17,12 @@
     @endif
 
     <div class="group">
-        <div class="col span_1_of_5"></div>
-        <div class="col span_3_of_5">
+        <div class="col span_4_of_5">
             <form action="{{ url('/admin/profile') }}" class="new-form" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 <div class="group">
-                    <div class="col span_2_of_6">
+                    <div class="col span_1_of_6">
                         <p>Name:</p>
                     </div>
                     <div class="col span_4_of_6 khmer">
@@ -38,7 +37,7 @@
                 </div>
 
                 <div class="group">
-                    <div class="col span_2_of_6">
+                    <div class="col span_1_of_6">
                         <p><sup>*</sup> Email:</p>
                     </div>
                     <div class="col span_4_of_6 khmer">
@@ -53,7 +52,7 @@
                 </div>
 
                 <div class="group">
-                    <div class="col span_2_of_6">
+                    <div class="col span_1_of_6">
                     </div>
                     <div class="col span_2_of_6">
                         <input type="submit" class="btn btn-small" value="Save">

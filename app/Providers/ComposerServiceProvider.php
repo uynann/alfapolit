@@ -4,6 +4,7 @@ namespace Alfapolit\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Alfapolit\Category;
+use Alfapolit\SiteInfo;
 
 class ComposerServiceProvider extends ServiceProvider
 {
@@ -25,7 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function register()
     {
         view()->composer(['layouts.partials._header', 'layouts.partials._footer'], function($view) {
-            $view->with('categories', Category::all());
+            $view->with('categories', Category::all())->with('site_info', SiteInfo::find(1));
         });
     }
 }

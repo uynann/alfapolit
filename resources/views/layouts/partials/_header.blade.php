@@ -1,7 +1,7 @@
 <div id="header">
     <div class="brand container">
         <a href="{{ url('/') }}">
-            <img src="{{ url('img/alpha-icon.png') }}" alt="Alfapolit Logo">
+            <img src="{{ url('img/' . $site_info->image) }}" alt="{{ $site_info->name }}">
         </a>
     </div>
     <div class="navigation mobile-nav">

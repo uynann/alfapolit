@@ -13,6 +13,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/profile', 'Admin\ProfileController@index');
     Route::Put('/profile', 'Admin\ProfileController@update');
 
+    Route::get('/settings', 'Admin\SettingsController@index');
+    Route::Put('/settings', 'Admin\SettingsController@update');
+    
     Route::get('/custom-fields', 'Admin\CustomFieldsController@index');
 
     Route::post('/upload-image', 'Admin\UploadFileController@uploadImage');

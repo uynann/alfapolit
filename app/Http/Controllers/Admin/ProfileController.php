@@ -26,6 +26,6 @@ class ProfileController extends Controller
             'email' => $request->email,
         ]);
 
-        return redirect('/admin/profile')->with('message', 'Profile saved.');
+        return redirect()->back()->with('message', 'Profile saved.');
     }
 }

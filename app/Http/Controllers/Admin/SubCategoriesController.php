@@ -38,7 +38,7 @@ class SubCategoriesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|min:2|max:255',
             'description' => 'max:1000',
             'category' => 'required',
         ]);
@@ -66,7 +66,7 @@ class SubCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
+            'name' => 'required|min:2|max:255',
             'description' => 'max:1000',
             'category' => 'required',
         ]);

@@ -1,51 +1,47 @@
 @extends('layouts.app')
 
-@section('title')Alfapolit @endsection
-
-@section('description')Alfapolit website.@endsection
+@section('meta')
+<title>អាល់ហ្វាផូលីត</title>
+<meta name="description" content="{{ $site_info->description }}">
+<meta property="og:url" content="{{ url('/') }}" />
+<meta property="og:title" content="{{ $site_info->name }}" />
+<meta property="og:description" content="{{ $site_info->description }}" />
+<meta property="og:image" content="{{ url('/img/alpha-icon-min.png') }}" />
+<meta property="og:locale" content="km_KH" />
+@endsection
 
 @section('content')
 
 <div id="slider" class="container">
     <div class="carousel-wrapper">
         <div id="owl-carousel" class="owl-carousel">
+           
+           @foreach($custom_fields as $custom_field)
+            @if($custom_field->type == 'slide')
             <div class="item">
-                <a href="actions.html"><img src="/img/sliders/pic1.jpg" alt="Macbook в рассрочку*">
+                <a href="{{ $custom_field->link }}"><img src="{{ url('/img/sliders/' . $custom_field->image) }}" alt="{{ $custom_field->image }}">
                     <div class="description">
-                        <h1>ចំណងជើង១</h1>
-                        <p>បរិយាយ១</p>
+                        <h1>{{ $custom_field->title }}</h1>
+                        <p>{{ $custom_field->description }}</p>
                     </div>
                 </a>
             </div>
-            <div class="item">
-                <a href="actions.html"><img src="/img/sliders/pic2.jpg" alt="Скидки на все модели планшетов Apple iPad">
-                    <div class="description">
-                        <h1>ចំណងជើង២</h1>
-                        <p>បរិយាយ២</p>
-                    </div>
-                </a>
-            </div>
-            <div class="item">
-                <a href="actions.html"><img src="/img/sliders/pic3.jpg" alt="Tелевизоры LG в рассрочку*">
-                    <div class="description">
-                        <h1>ចំណងជើង៣</h1>
-                        <p>បរិយាយ៣</p>
-                    </div>
-                </a>
-            </div>
+            @endif
+            @endforeach
+            
         </div>
     </div>
 </div>
 
 <div id="alfapolit" class="site-section">
     <div class="section group container">
-        <div class="col span_1_of_2">
-
+        <div class="img-wrapper col span_1_of_2">
+            <img src="{{ url('/img/' . $site_info->image1) }}" alt="{{ $site_info->name }}">
         </div>
         <div class="col span_1_of_2">
             <div class="box">
-                <h1>អាល់ហ្វាផូលីត</h1>
-                <p>សម្រាប់​ប្រមុខការបរទេស​អាមេរិក គេ​ត្រូវ​តែ​ស្វែងរក​ដំណោះស្រាយ​ថ្មី ព្រោះថា នយោបាយ​ការទូត​ដែល​គេ​ប្រើ ក្នុង​រយៈពេល​២០​ឆ្នាំ​ចុងក្រោយ​នេះ បាន​បរាជ័យ មិនអាច​ជំរុញ​កូរ៉េខាងជើង​ឲ្យ​លះបង់​ចោល​មហិច្ឆត</p>
+                <h1>{{ $site_info->name }}</h1>
+                <p>{{ $site_info->description }}</p>
             </div>
         </div>
     </div>
@@ -53,34 +49,25 @@
 
 <div id="knowledge" class="site-section">
     <div class="section group container">
+       @foreach($custom_fields as $custom_field)
+        @if($custom_field->type == 'knowledge')
         <div class="col span_1_of_3">
             <div class="box">
-                <i class="fa fa-line-chart fa-5x" aria-hidden="true"></i>
-                <h2>សេដ្ជកិច</h2>
-                <p>សម្រាប់​ប្រមុខការបរទេស​អាមេរិក គេ​ត្រូវ​តែ​ស្វែងរក​ដំណោះស្រាយ​ថ្មី ព្រោះថា នយោបាយ​ការទូត​ដែល​គេ​ប្រើ ក្នុង​រយៈពេល​២០​ឆ្នាំ​ចុងក្រោយ​នេះ បាន​បរាជ័យ មិនអាច​ជំរុញ​កូរ៉េខាងជើង​ឲ្យ​លះបង់​ចោល​មហិច្ឆត</p>
+                {!! html_entity_decode($custom_field->image) !!}
+                <h2>{{ $custom_field->title }}</h2>
+                <p>{{ $custom_field->description }}</p>
             </div>
         </div>
-        <div class="col span_1_of_3">
-            <div class="box">
-                <img src="img/cambodia.png" alt="Cambodia map">
-                <h2>នយោបាយ</h2>
-                <p>សម្រាប់​ប្រមុខការបរទេស​អាមេរិក គេ​ត្រូវ​តែ​ស្វែងរក​ដំណោះស្រាយ​ថ្មី ព្រោះថា នយោបាយ​ការទូត​ដែល​គេ​ប្រើ ក្នុង​រយៈពេល​២០​ឆ្នាំ​ចុងក្រោយ​នេះ បាន​បរាជ័យ មិនអាច​ជំរុញ​កូរ៉េខាងជើង​ឲ្យ​លះបង់​ចោល​មហិច្ឆត</p>
-            </div>
-        </div>
-        <div class="col span_1_of_3">
-            <div class="box">
-                <i class="fa fa-graduation-cap fa-5x" aria-hidden="true"></i>
-                <h2>សង្គមកិច្ច</h2>
-                <p>សម្រាប់​ប្រមុខការបរទេស​អាមេរិក គេ​ត្រូវ​តែ​ស្វែងរក​ដំណោះស្រាយ​ថ្មី ព្រោះថា នយោបាយ​ការទូត​ដែល​គេ​ប្រើ ក្នុង​រយៈពេល​២០​ឆ្នាំ​ចុងក្រោយ​នេះ បាន​បរាជ័យ មិនអាច​ជំរុញ​កូរ៉េខាងជើង​ឲ្យ​លះបង់​ចោល​មហិច្ឆត</p>
-            </div>
-        </div>
+        @endif
+        @endforeach
+        
     </div>
 </div>
 
 <div id="aboutus" class="site-section">
     <div class="container box">
         <h1>អំពីយើង</h1>
-        <p>សម្រាប់​ប្រមុខការបរទេស​អាមេរិក គេ​ត្រូវ​តែ​ស្វែងរក​ដំណោះស្រាយ​ថ្មី ព្រោះថា នយោបាយ​ការទូត​ដែល​គេ​ប្រើ ក្នុង​រយៈពេល​២០​ឆ្នាំ​ចុងក្រោយ​នេះ បាន​បរាជ័យ មិនអាច​ជំរុញ​កូរ៉េខាងជើង​ឲ្យ​លះបង់​ចោល​មហិច្ឆតា​នុយក្លេអ៊ែរ។ តាម​គំនិត​របស់​រដ្ឋមន្រ្តី​ការបរទេស​អាមេរិក វា​ជារឿង​ចាំបាច់ ដែល​គេ​ត្រូវ​បង្កើត​វិធីសាស្រ្ត​ថ្មីមួយ ដើម្បី​ប្រឈម​នឹង​ការគំរាមកំហែង​នុយក្លេអ៊ែរ​របស់​កូរ៉េខាងជើង។</p>
+        {!! html_entity_decode($site_info->about_admin) !!}
     </div>
 </div>
 
