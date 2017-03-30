@@ -38,8 +38,8 @@ class ShowArticleController extends Controller
             
             $recommended_articles = Article::where('status', 'published')
                                     ->where('id', '<>', $article_show->id)
-                                    ->whereNotIn('id', $popular_articles)
-                                    ->where('category_id', $category->id)
+//                                    ->whereNotIn('id', $popular_articles)
+                                    ->where('category_id', $article_show->category_id)
                                     ->orderBy('id', 'desc')->take(5)->get();
         } else {
             $article_show = $article->where('status', 'published')

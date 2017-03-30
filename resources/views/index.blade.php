@@ -9,6 +9,7 @@
 <meta property="og:image" content="{{ url('/img/alpha-icon-min.png') }}" />
 <meta property="og:locale" content="km_KH" />
 <meta property="fb:app_id" content="269342813510825" />
+<meta property="og:site_name" content="អាល់ហ្វាផូលីត" />
 @endsection
 
 @section('content')
