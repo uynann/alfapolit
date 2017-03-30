@@ -67,7 +67,7 @@ class ArticlesController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = uniqid() . '-' . $image->getClientOriginalName();
+            $filename = uniqid() . '-' . str_slug($image->getClientOriginalName());
 
             if (!file_exists('img/featured-image')) {
                 mkdir('imge/featured-image', 0777, true);
@@ -128,7 +128,7 @@ class ArticlesController extends Controller
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $filename = uniqid() . '-' . $image->getClientOriginalName();
+            $filename = uniqid() . '-' . str_slug($image->getClientOriginalName());
 
             if (!file_exists('img/featured-image')) {
                 mkdir('images/featured-image', 0777, true);

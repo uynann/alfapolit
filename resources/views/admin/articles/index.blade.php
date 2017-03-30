@@ -76,7 +76,7 @@
 
     <div class="note-on-page">
         <span><strong><em>Note:</em></strong></span>
-        <span><em>Deleting an article does not delete it permanently. Instead article is moved to trash.</em></span>
+        <span><em>Deleting an article will delete it permanently.</em></span>
     </div>
 </div>
 

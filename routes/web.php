@@ -11,12 +11,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/articles', 'Admin\ArticlesController', ['except' => ['show']]);
 
     Route::get('/profile', 'Admin\ProfileController@index');
-    Route::Put('/profile', 'Admin\ProfileController@update');
+    Route::put('/profile', 'Admin\ProfileController@update');
 
     Route::get('/settings', 'Admin\SettingsController@index');
-    Route::Put('/settings', 'Admin\SettingsController@update');
+    Route::put('/settings', 'Admin\SettingsController@update');
     
     Route::get('/custom-fields', 'Admin\CustomFieldsController@index');
+    Route::put('/custom-fields/{id}/update-slide', 'Admin\CustomFieldsController@updateSlide');
+    Route::put('/custom-fields/{id}/update-knowledge', 'Admin\CustomFieldsController@updateKnowledge');
 
     Route::post('/upload-image', 'Admin\UploadFileController@uploadImage');
 });

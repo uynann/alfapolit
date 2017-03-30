@@ -8,7 +8,9 @@
     <div class="page-header">
         <h2>Edit Article</h2>
         <a href="{{ url('/admin/articles') }}" class="btn btn-small">Back to Articles</a>
-        <a href="{{ url('/'. $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" class="btn btn-small">Show Article</a>
+        <a href="{{ url('/'. $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" class="btn btn-small">Show Article</a>
+        
+        <div class="fb-share-button" data-href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="large" data-mobile-iframe="true"></div>
     </div>
 
     @if(session('message'))

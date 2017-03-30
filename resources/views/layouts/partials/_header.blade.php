@@ -26,13 +26,24 @@
 
             </li>
             @endforeach
+            
+            @if(Auth::check())
+                <li class="has-dropdown"><a href="">អែតមីន <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <ul>
+                        <li><a href="{{ url('/admin/articles') }}">អត្តបទ</a></li>
+                        <li><a href="{{ url('/admin/categories') }}">បង្កើតអត្តបទ</a></li>
+                        <li><a href="{{ url('/admin/subcategories') }}">ផ្នែក</a></li>
+                        <li><a href="{{ url('/logout') }}">ចាកចេញ</a></li>
+                    </ul>
+                </li>
+            @endif
         </ul>
 
         <div class="search-wrapper container">
             <div class="search">
-                <form action="{{ url('/search') }}" class="search-form">
+                <form action="{{ url('/search') }}" class="search-form1">
                     <input type="text" name="search" placeholder="ស្វែងរក">
-                    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <button type="submit"><i class="fa fa-search fa-lg" aria-hidden="true"></i></button>
                 </form>
             </div>
         </div>

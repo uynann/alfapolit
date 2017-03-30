@@ -38,10 +38,10 @@
                 <div class="results">
                    @foreach($articles as $article)
                     <div class="search-article">
-                        <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}"><h3>{{ $article->title }}</h3></a>
+                        <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><h3>{{ $article->title }}</h3></a>
                         <div class="group">
                             <div class="col span_1_of_4">
-                                <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/' . $article->image) }}" alt="{{ $article->image }}"></a>
+                                <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/' . $article->image) }}" alt="{{ $article->image }}"></a>
                             </div>
                             <div class="col span_3_of_4">
                                 <p>{{ str_limit(strip_tags($article->content), 150) }}</p>
@@ -62,11 +62,9 @@
                 <div class="sidebar-articles">
                     <h2>អត្ដបទពេញនិយម</h2>
                     <ul>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
+                        @foreach($popular_articles as $popular_article)
+                   <li><a href="{{ url('/' . $popular_article->category->slug . '/' . (isset($popular_article->subCategory) ? $popular_article->subCategory->slug : 'អ') . '/' . $popular_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $popular_article->title }}</a></li>
+                   @endforeach
 
                     </ul>
                 </div>
@@ -74,11 +72,9 @@
                 <div class="sidebar-articles">
                     <h2>អត្ដបទសម្រាបអ្នក</h2>
                     <ul>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                        <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
+                        @foreach($recommended_articles as $recommended_article)
+                   <li><a href="{{ url('/' . $recommended_article->category->slug . '/' . (isset($recommended_article->subCategory) ? $recommended_article->subCategory->slug : 'អ') . '/' . $recommended_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $recommended_article->title }}</a></li>
+                   @endforeach
                     </ul>
                 </div>
             </div>

@@ -23,7 +23,7 @@
      @if($custom_field->type == 'slide')
       <div class="group">
         <div class="col span_4_of_5">
-            <form action="{{ url('/admin/settings/' . $custom_field->id . '/edit') }}" class="new-form" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/admin/custom-fields/' . $custom_field->id . '/update-slide') }}" class="new-form" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 
@@ -68,7 +68,7 @@
                         <p>Link:</p>
                     </div>
                     <div class="col span_4_of_6 khmer">
-                        <input type="text" class="form-control" placeholder="តំណរភ្ជាប់" name="link" value="{{ $custom_field->link }}">
+                        <input type="text" class="form-control" placeholder="តំណរភ្ជាប់" name="ex_link" value="{{ $custom_field->link }}">
 
                         @if ($errors->has('link'))
                         <span class="help-block">
@@ -80,7 +80,7 @@
                 
                 <div class="group">
                     <div class="col span_1_of_6">
-                        <p>Description:</p>
+                        <p><sup>*</sup> Description:</p>
                     </div>
                     <div class="col span_4_of_6 khmer">
                         <textarea name="description" class="form-control" placeholder="បរិយាយ" rows="5">{{ $custom_field->description }}</textarea>
@@ -120,7 +120,7 @@
      @if($custom_field->type == 'knowledge')
       <div class="group">
         <div class="col span_4_of_5">
-            <form action="{{ url('/admin/settings/' . $custom_field->id . '/edit') }}" class="new-form" method="POST" enctype="multipart/form-data">
+            <form action="{{ url('/admin/custom-fields/' . $custom_field->id . '/update-knowledge') }}" class="new-form" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
                 
@@ -141,7 +141,7 @@
                 
                 <div class="group">
                     <div class="col span_1_of_6">
-                        <p>Description:</p>
+                        <p><sup>*</sup> Description:</p>
                     </div>
                     <div class="col span_4_of_6 khmer">
                         <textarea name="description" class="form-control" placeholder="បរិយាយ" rows="5">{{ $custom_field->description }}</textarea>

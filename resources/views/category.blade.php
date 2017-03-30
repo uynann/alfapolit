@@ -24,14 +24,18 @@
             <div class="col span_1_of_3">
                 <div class="article card">
                     <div class="card-img">
-                        <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}"></a>
+                        <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}"></a>
                     </div>
                     <div class="card-block">
                         <div class="card-title">
-                            <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}"><h4>{{ $article->title }}</h4></a>
+                            <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><h4>{{ $article->title }}</h4></a>
                         </div>
                         <div class="card-footer">
-                            <p class="date">{{ $article->created_at }}</p> <a href="">{{ $category->name }}</a> @if(isset($article->subCategory)) <a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $article->subCategory->name }} </a> @endif
+                            <p class="date">{{ $article->created_at }}</p> <a href="{{ url('/' . $category->slug) }}">{{ $category->name }}</a> @if(isset($article->subCategory)) <a href="{{ url('/' . $category->slug . '/' . $article->subCategory->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $article->subCategory->name }} </a> @endif
+                            
+                             @if(Auth::check())
+                            <a href="{{ url('/admin/articles/' . $article->id . '/edit') }}" class="edit-article edit-btn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>

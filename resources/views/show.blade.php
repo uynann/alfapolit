@@ -3,7 +3,7 @@
 @section('meta')
 <title>{{ $article->title }} - អាល់ហ្វាផូលីត</title>
 <meta name="description" content="{{ str_limit(strip_tags($article->content), 160) }}">
-<meta property="og:url" content="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" />
+<meta property="og:url" content="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ $article->title }}" />
 <meta property="og:description" content="{{ str_limit(strip_tags($article->content), 160) }}" />
@@ -19,6 +19,10 @@
         <div class="col span_2_of_3">
             <div id="breadcrumbs-section" class="container">
                 <a href="{{ url('/' . $category->slug) }}">{{ $category->name }}</a>  @if(!is_null($subcategory)) > <a href="  {{ url('/' . $category->slug . '/' .  $subcategory->slug) }}">{{ $subcategory->name }}</a> @endif
+                
+                @if(Auth::check())
+                <a href="{{ url('/admin/articles/' . $article->id . '/edit') }}" class="edit-article"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                @endif
             </div>
             <div class="article-header">
                 <h2>{{ $article->title }}</h2>
@@ -32,18 +36,25 @@
                 {!! html_entity_decode($article->content) !!}
 
             </div>
-            <div class="fb-share-button" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->name : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="large" data-mobile-iframe="true"></div>
+            
+            <div class="social-buttons">
+                <div class="fb-share-button" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="small" data-mobile-iframe="true"></div>
+                
+                <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                
+                <div class="fb-send" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"></div>
+                
+            </div>
+            
         </div>
 
         <div class="col span_1_of_3">
             <div class="sidebar-articles">
                 <h2>អត្ដបទពេញនិយម</h2>
                 <ul>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
+                   @foreach($popular_articles as $popular_article)
+                   <li><a href="{{ url('/' . $popular_article->category->slug . '/' . (isset($popular_article->subCategory) ? $popular_article->subCategory->slug : 'អ') . '/' . $popular_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $popular_article->title }}</a></li>
+                   @endforeach
 
                 </ul>
             </div>
@@ -51,11 +62,10 @@
             <div class="sidebar-articles">
                 <h2>អត្ដបទសម្រាបអ្នក</h2>
                 <ul>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
-                    <li><a href=""><i class="fa fa-angle-right" aria-hidden="true"></i> នុយក្លេអ៊ែរ​កូរ៉េខាងជើង៖ ប្រមុខ​ការបរទេស​អាមេរិក​ចង់បាន​ដំណោះស្រាយ​ថ្មី ក្រៅពី​នយោបាយ​ការទូត</a></li>
+                    @foreach($recommended_articles as $recommended_article)
+                   <li><a href="{{ url('/' . $recommended_article->category->slug . '/' . (isset($recommended_article->subCategory) ? $recommended_article->subCategory->slug : 'អ') . '/' . $recommended_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $recommended_article->title }}</a></li>
+                   @endforeach
+            
                 </ul>
             </div>
         </div>

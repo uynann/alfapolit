@@ -18,7 +18,7 @@ class CreateCustomFieldsTable extends Migration
             $table->string('title')->unique();;
             $table->text('description')->nullable();
             $table->string('image')->nullable();
-            $table->string('link');
+            $table->string('link')->nullable();
             $table->string('type');
             $table->timestamps();
         });
