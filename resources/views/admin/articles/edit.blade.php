@@ -10,7 +10,11 @@
         <a href="{{ url('/admin/articles') }}" class="btn btn-small">Back to Articles</a>
         <a href="{{ url('/'. $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" class="btn btn-small">Show Article</a>
         
+        @if($article->status == 'published')
+        
         <div class="fb-share-button" data-href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="large" data-mobile-iframe="true"></div>
+        
+        @endif
     </div>
 
     @if(session('message'))

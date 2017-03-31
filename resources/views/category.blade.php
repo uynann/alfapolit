@@ -3,6 +3,7 @@
 @section('meta')
 <title>{{ $category->name }} - អាល់ហ្វាផូលីត</title>
 <meta name="description" content="{{ $category->decription }}">
+<meta name="google-site-verification" content="..." />
 <meta property="og:url" content="{{ url('/' . $category->slug) }}" />
 <meta property="og:title" content="{{ $category->name }} - អាល់ហ្វាផូលីត" />
 <meta property="og:description" content="{{ $category->decription }}" />
@@ -57,5 +58,27 @@
     </div>
 
     {{ $category_articles->links() }}
+    
+    <div class="group category-bottom-articles no-articles">
+        <div class="col span_1_of_2 sidebar-articles">
+            <h2>អត្ដបទពេញនិយម</h2>
+            <ul>
+               @foreach($popular_articles as $popular_article)
+               <li><a href="{{ url('/' . $popular_article->category->slug . '/' . (isset($popular_article->subCategory) ? $popular_article->subCategory->slug : 'អ') . '/' . $popular_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $popular_article->title }}</a></li>
+               @endforeach
+
+            </ul>
+        </div>
+
+        <div class="col span_1_of_2 sidebar-articles">
+            <h2>អត្ដបទថ្មី</h2>
+            <ul>
+                @foreach($recent_articles as $recent_article)
+               <li><a href="{{ url('/' . $recent_article->category->slug . '/' . (isset($recent_article->subCategory) ? $recent_article->subCategory->slug : 'អ') . '/' . $recent_article->slug) }}"><i class="fa fa-angle-right" aria-hidden="true"></i> {{ $recent_article->title }}</a></li>
+               @endforeach
+
+            </ul>
+        </div>
+    </div>
 </div>
 @endsection

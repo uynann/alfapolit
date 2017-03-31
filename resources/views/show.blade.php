@@ -3,6 +3,7 @@
 @section('meta')
 <title>{{ $article->title }} - អាល់ហ្វាផូលីត</title>
 <meta name="description" content="{{ str_limit(strip_tags($article->content), 160) }}">
+<meta name="google-site-verification" content="..." />
 <meta property="og:url" content="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="{{ $article->title }}" />
@@ -11,11 +12,6 @@
 <meta property="og:locale" content="km_KH" />
 <meta property="fb:app_id" content="269342813510825" />
 <meta property="og:site_name" content="អាល់ហ្វាផូលីត" />
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ $article->title }}">
-<meta name="twitter:description" content="{{ str_limit(strip_tags($article->content), 160) }}">
-<meta property="twitter:image" content="{{ url('/img/featured-image/' . $article->image) }}"/>
 @endsection
 
 @section('content')
@@ -48,22 +44,11 @@
             <div class="social-buttons">
                 <div class="fb-share-button" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" data-layout="button" data-size="small" data-mobile-iframe="true"></div>
                 
-                <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                
                 <div class="fb-send" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"></div>
                 
-                <div class="fb-page" 
-                     data-href="https://www.facebook.com" 
-                     data-tabs="messages" 
-                     data-width="400" 
-                     data-height="300" 
-                     data-small-header="true">
-                  <div class="fb-xfbml-parse-ignore">
-                    <blockquote></blockquote>
-                  </div>
-                </div>
-                
             </div>
+            
+            <div class="fb-comments" data-href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}" data-numposts="5" data-width="100%"></div>
             
         </div>
 

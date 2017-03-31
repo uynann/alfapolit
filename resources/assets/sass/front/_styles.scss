@@ -331,6 +331,10 @@ h4 {
     top: 0;
 }
 
+.navigation.default {
+    position: static;
+}
+
 .toggle-mobile-nav {
     display: none;
     height: 48px;
@@ -509,5 +513,18 @@ h4 {
     margin-right: 10px;
 }
 
+.category-bottom-articles {
+    margin-top: 50px;
+    padding-top: 15px;
+    border-top: 1px solid #d7dde4;
+}
 
+.category-bottom-articles .sidebar-articles {
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.category-bottom-articles .sidebar-articles:first-child ul {
+    border-bottom: 0;
+}
 

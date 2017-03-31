@@ -4,7 +4,7 @@
             <img src="{{ url('img/' . $site_info->image) }}" alt="{{ $site_info->name }}">
         </a>
     </div>
-    <div class="navigation mobile-nav">
+    <div class="navigation mobile-nav @if(isset($category_articles)) {{ (count($category_articles) > 0) ? '' : 'default' }} @endif">
         <span class="toggle-mobile-nav"><i class="fa fa-bars fa-2x" aria-hidden="true"></i></span>
         <ul>
             <li><a href="{{ url('/') }}"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>

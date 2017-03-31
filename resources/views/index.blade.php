@@ -3,6 +3,7 @@
 @section('meta')
 <title>អាល់ហ្វាផូលីត</title>
 <meta name="description" content="{{ $site_info->description }}">
+<meta name="google-site-verification" content="..." />
 <meta property="og:url" content="{{ url('/') }}" />
 <meta property="og:title" content="{{ $site_info->name }}" />
 <meta property="og:description" content="{{ $site_info->description }}" />
