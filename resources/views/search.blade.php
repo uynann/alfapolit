@@ -42,7 +42,14 @@
                         <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><h3>{{ $article->title }}</h3></a>
                         <div class="group">
                             <div class="col span_1_of_4">
-                                <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/' . $article->image) }}" alt="{{ $article->image }}"></a>
+                                <a href="{{ url('/' . $article->category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}">
+                                
+                                @if($article->image != null)
+                                <img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}">
+                                @else
+                                <img src="{{ url('/img/featured-image/thumbs/no_image.png') }}" alt="No Image">
+                                @endif
+                                </a>
                             </div>
                             <div class="col span_3_of_4">
                                 <p>{{ str_limit(strip_tags($article->content), 150) }}</p>

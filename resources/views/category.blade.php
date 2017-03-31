@@ -25,7 +25,14 @@
             <div class="col span_1_of_3">
                 <div class="article card">
                     <div class="card-img">
-                        <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}"><img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}"></a>
+                        <a href="{{ url('/' . $category->slug . '/' . (isset($article->subCategory) ? $article->subCategory->slug : 'អ') . '/' . $article->slug) }}">
+                        
+                        @if($article->image != null)
+                        <img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}">
+                        @else
+                        <img src="{{ url('/img/featured-image/thumbs/no_image.png') }}" alt="No Image">
+                        @endif
+                        </a>
                     </div>
                     <div class="card-block">
                         <div class="card-title">
