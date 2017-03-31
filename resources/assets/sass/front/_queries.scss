@@ -55,13 +55,19 @@
         border-top: 1px solid #d7dde4;
         padding-top: 15px;
     }
+    
+    .category-bottom-articles .sidebar-articles:first-child {
+        border-top: 0;
+        border-bottom: 1px solid #d7dde4;
+        padding-top: 0;
+    }
 
     .col.span_3_of_4 {
         padding-left: 2%;
     }
 
     .search {
-        bottom: 0px;
+        bottom: -1px;
     }
 
     .search input[type="text"] {
