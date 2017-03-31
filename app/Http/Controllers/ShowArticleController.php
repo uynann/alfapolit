@@ -28,7 +28,6 @@ class ShowArticleController extends Controller
                 ->orderBy('view_count', 'desc')->take(5)->get();
         
         
-        
         if (count($sub_category) == 0) {
             if ($subcategory != 'អ') {
                 $category::where('name', 'អ')->firstOrFail();
@@ -38,7 +37,7 @@ class ShowArticleController extends Controller
             
             $recommended_articles = Article::where('status', 'published')
                                     ->where('id', '<>', $article_show->id)
-//                                    ->whereNotIn('id', $popular_articles)
+                                    ->whereNotIn('id', $popular_articles->pluck('id')->toArray())
                                     ->where('category_id', $article_show->category_id)
                                     ->orderBy('id', 'desc')->take(5)->get();
         } else {
@@ -63,11 +62,6 @@ class ShowArticleController extends Controller
             $article_show->increment('view_count');
             Session::put($article_key, 1);
         }
-        
-        $popular_articles = Article::where('status', 'published')
-                ->where('created_at', '>=', Carbon::now()->subWeeks(100))
-                ->orderBy('view_count', 'desc')->take(5)->get();
-        
         
 
         return view('show', [

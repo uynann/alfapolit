@@ -29,7 +29,9 @@
                 <h2>{{ $article->title }}</h2>
                 <p class="date">{{ $article->created_at }}</p>
                 <div class="featured-img">
+                   @if($article->image != null)
                     <img src="{{ url('/img/featured-image/' . $article->image) }}" alt="{{ $article->image }}">
+                    @endif
                 </div>
             </div>
             <div class="article-body">

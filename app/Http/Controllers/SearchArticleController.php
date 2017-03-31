@@ -21,7 +21,7 @@ class SearchArticleController extends Controller
                 ->orderBy('view_count', 'desc')->take(5)->get();
         
         $recommended_articles = Article::where('status', 'published')
-                                    ->whereNotIn('id', $popular_articles)
+                                    ->whereNotIn('id', $popular_articles->pluck('id')->toArray())
                                     ->orderBy('id', 'desc')->take(5)->get();
         
         if (isset($search)) {
