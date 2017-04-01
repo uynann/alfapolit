@@ -18,4 +18,16 @@ class UploadFileController extends Controller
         $image->move('img/froala-image/', $filename);
         return stripslashes(response()->json(['link' => url('/img/froala-image/' . $filename)])->content());
     }
+    
+    public function uploadFile(Request $request) {
+        $file = $request->file('file_param');
+        $filename = uniqid() . '-' . $file->getClientOriginalName();
+
+        if (!file_exists('files/froala')) {
+            mkdir('files/froala', 0777, true);
+        }
+
+        $file->move('files/froala/', $filename);
+        return stripslashes(response()->json(['link' => url('/files/froala/' . $filename)])->content());
+    }
 }

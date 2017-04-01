@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::put('/custom-fields/{id}/update-knowledge', 'Admin\CustomFieldsController@updateKnowledge');
 
     Route::post('/upload-image', 'Admin\UploadFileController@uploadImage');
+    Route::post('/upload-file', 'Admin\UploadFileController@uploadFile');
 });
 
 

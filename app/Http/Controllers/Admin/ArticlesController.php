@@ -125,6 +125,10 @@ class ArticlesController extends Controller
             'slug' => $request->title,
             'status' => $request->status,
         ]);
+        
+        if (!($request->not_removed_image)) {
+            Article::findOrFail($id)->update(['image' => null]);
+        }
 
         if ($request->hasFile('image')) {
             $image = $request->file('image');

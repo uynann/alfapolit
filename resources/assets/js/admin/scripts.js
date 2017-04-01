@@ -13,6 +13,10 @@ $(function() {
     $('.close-message').click(function() {
         $(this).parent().hide();
     });
+    
+    $('.featured-image span').click(function() {
+        $(this).parent().remove();
+    });
 
 
 
@@ -75,7 +79,29 @@ $(function() {
 
         imageMaxSize: 5 * 1024 * 1024,
 
-        imageAllowedTypes: ['jpeg', 'jpg', 'png']
+        imageAllowedTypes: ['jpeg', 'jpg', 'png'],
+        
+        
+        
+        // Set the file upload parameter.
+        fileUploadParam: 'file_param',
+
+        // Set the file upload URL.
+        fileUploadURL: '/admin/upload-file',
+
+        // Additional upload params.
+        fileUploadParams: {
+            _token: $("input[name='_token']").val()
+        },
+
+        // Set request type.
+        fileUploadMethod: 'POST',
+
+        // Set max file size to 20MB.
+        fileMaxSize: 25 * 1024 * 1024,
+
+        // Allow to upload any file.
+        fileAllowedTypes: ['*']
     });
 
 

@@ -84,6 +84,8 @@
                 @if(!empty($article->image))
                 <div class="featured-image">
                     <img src="{{ url('/img/featured-image/thumbs/' . $article->image) }}" alt="{{ $article->image }}">
+                    <span><i class="fa fa-times-circle fa-lg" aria-hidden="true"></i></span>
+                    <input type="hidden" name="not_removed_image" value="{{ $article->image }}">
                 </div>
                 @endif
             </div>
