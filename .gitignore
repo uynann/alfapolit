@@ -3,9 +3,9 @@
 /public/hot
 /public/img/featured-image
 /public/img/froala-image
+/public/img/sliders
 /storage/*.key
 /vendor
 /.idea
 Homestead.json
 Homestead.yaml
-.env
