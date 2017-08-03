@@ -9,14 +9,16 @@
                 </ul>
             </div>
             <div class="col span_1_of_4">
-                <ul>
-                    <li><a href="index.html#aboutus">អំពីយើង</a></li>
-                    <li><a href="index.html#contactus">ទំនាកទំនង</a></li>
+                <ul id="info-footer">
+                    <li><a href="{{ url('/#aboutus') }}">អំពីយើង</a></li>
+                    <li><a href="#">ទំនាក់ទំនង</a></li>
+                    <p>{{ $site_info->email }}</p>
+                    <p>{{ $site_info->phone }}</p>
                     <li>
-                        <a href=""><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a>
-                        <a href=""><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
-                        <a href=""><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
-                        <a href=""><i class="fa fa-youtube-square fa-lg" aria-hidden="true"></i></a>
+                        <a href="{{ $site_info->fb_link }}" target="_blank"><i class="fa fa-facebook-official fa-lg" aria-hidden="true"></i></a>
+                        <a href="{{ $site_info->tw_link }}" target="_blank"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
+                        <a href="" target="_blank"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                        <a href="" target="_blank"><i class="fa fa-youtube-square fa-lg" aria-hidden="true"></i></a>
                     </li>
                 </ul>
             </div>
